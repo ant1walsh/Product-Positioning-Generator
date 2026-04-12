@@ -1,0 +1,1234 @@
+{
+  "name": "Product Positioning Generator",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Product Enhancement Evaluation",
+        "formDescription": "Please share information about your product launch or feature release. This agent will help you understand how it benefits your audience compared to competing solutions.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Are you launching a new product or feature?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Launching a new product"
+                  },
+                  {
+                    "option": "Launching a new feature"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        2528,
+        1664
+      ],
+      "id": "00000000-0000-0000-0000-000000000021",
+      "name": "Product Enhancement Evaluation",
+      "webhookId": "YOUR_WEBHOOK_ID_4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00000000-0000-0000-condition-000004",
+              "leftValue": "={{ $json[\"Are you launching a new product or feature?\"] === \"Launching a new product\" }}",
+              "rightValue": "=",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2720,
+        1664
+      ],
+      "id": "00000000-0000-0000-0000-000000000019",
+      "name": "Product or Feature Release?"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What is the name of the product?",
+              "placeholder": "Name the product"
+            },
+            {
+              "fieldLabel": "What is the product category?",
+              "placeholder": "Name the product category"
+            },
+            {
+              "fieldLabel": "What problem does the product solve?",
+              "fieldType": "textarea",
+              "placeholder": "Describe the problem"
+            },
+            {
+              "fieldLabel": "How does the product work?",
+              "fieldType": "textarea",
+              "placeholder": "Describe how the product works"
+            },
+            {
+              "fieldLabel": "What are the primary features?",
+              "fieldType": "textarea",
+              "placeholder": "List and describe the primary features"
+            },
+            {
+              "fieldLabel": "What results does the product deliver?",
+              "fieldType": "textarea",
+              "placeholder": "Describe the anticipated results of successful usage"
+            },
+            {
+              "fieldLabel": "What is the ideal customer profile?",
+              "fieldType": "textarea",
+              "placeholder": "Define the profile(s) of customer accounts and list their distinguishing attributes"
+            },
+            {
+              "fieldLabel": "Who is the target persona?",
+              "fieldType": "textarea",
+              "placeholder": "Define the buyer or user persona and list their distinguishing attributes"
+            },
+            {
+              "fieldLabel": "Which competitors offer alternative products?",
+              "fieldType": "textarea",
+              "placeholder": "List the names of alternative products by competing vendors"
+            },
+            {
+              "fieldLabel": "What are the product's competitive differentiators?",
+              "fieldType": "textarea",
+              "placeholder": "List competitive differentiators and supporting evidence"
+            },
+            {
+              "fieldLabel": "Upload supporting documents about the product (PRD, RFC, etc.)",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".pdf"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        2928,
+        1568
+      ],
+      "id": "00000000-0000-0000-0000-000000000017",
+      "name": "Product Launch Details",
+      "webhookId": "YOUR_WEBHOOK_ID_2"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "What is the feature called?",
+              "placeholder": "Name the feature"
+            },
+            {
+              "fieldLabel": "What product is it for?",
+              "placeholder": "Name the product"
+            },
+            {
+              "fieldLabel": "What problem does the feature solve?",
+              "fieldType": "textarea",
+              "placeholder": "Describe the problem"
+            },
+            {
+              "fieldLabel": "How does the feature work?",
+              "fieldType": "textarea",
+              "placeholder": "Describe how the feature works"
+            },
+            {
+              "fieldLabel": "What are the benefits of the feature?",
+              "fieldType": "textarea",
+              "placeholder": "Describe the anticipated results from successful usage"
+            },
+            {
+              "fieldLabel": "What products and vendors offer a comparable feature?",
+              "fieldType": "textarea",
+              "placeholder": "List products by vendors with comparable features"
+            },
+            {
+              "fieldLabel": "How is this feature differentiated from its alternatives?",
+              "fieldType": "textarea"
+            },
+            {
+              "fieldLabel": "=Upload supporting documents about the feature (PRD, RFC, etc.)",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".pdf"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        2928,
+        1744
+      ],
+      "id": "00000000-0000-0000-0000-000000000012",
+      "name": "Feature Release Details",
+      "webhookId": "YOUR_WEBHOOK_ID_1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00000000-0000-0000-condition-000010",
+              "leftValue": "={{ [$json['Upload supporting documents about the product (PRD, RFC, etc.)']] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3136,
+        1328
+      ],
+      "id": "00000000-0000-0000-0000-000000000024",
+      "name": "Uploaded PRD/RFC"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00000000-0000-0000-condition-000001",
+              "leftValue": "={{ $json['What is the name of the product?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000008",
+              "leftValue": "={{ $json['What is the product category?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000012",
+              "leftValue": "={{ $json['What problem does the product solve?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000011",
+              "leftValue": "={{ $json['How does the product work?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000009",
+              "leftValue": "={{ $json['What are the primary features?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000013",
+              "leftValue": "={{ $json['What results does the product deliver?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000005",
+              "leftValue": "={{ $json['What is the ideal customer profile?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000003",
+              "leftValue": "={{ $json['Who is the target persona?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000006",
+              "leftValue": "={{ $json['Which competitors offer alternative products?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000007",
+              "leftValue": "={{ $json['What are the product\\'s competitive differentiators?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "dateTime",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3312,
+        1408
+      ],
+      "id": "00000000-0000-0000-0000-000000000027",
+      "name": "Only Form Field"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "={{ $('Product Launch Details').item.binary['Upload_supporting_documents_about_the_product__PRD__RFC__etc__'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3312,
+        1232
+      ],
+      "id": "00000000-0000-0000-0000-000000000004",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Extract from File').item.json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "product_name",
+              "description": "The name of the product"
+            },
+            {
+              "name": "product_category",
+              "description": "The name of the product category"
+            },
+            {
+              "name": "product_function",
+              "description": "How the product functions"
+            },
+            {
+              "name": "anticipated_results",
+              "description": "The anticipated results delivered by the product"
+            },
+            {
+              "name": "product_features",
+              "description": "The primary features of the product"
+            },
+            {
+              "name": "icp",
+              "description": "Ideal customer profile, common attributes of current or prospective customers"
+            },
+            {
+              "name": "persona",
+              "description": "Common attributes of current or prospective buyers and users"
+            },
+            {
+              "name": "competitors",
+              "description": "Names of alternative products by competing vendors"
+            },
+            {
+              "name": "differentiators",
+              "description": "Competitive advantages that differentiate the product from alternatives"
+            },
+            {
+              "name": "problem_statement",
+              "description": "State the problem that the product solves"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert in analyzing technical and business documents, such as Requests for Comments (RFCs) and Product Requirements Documents (PRDs), for new products or features.\n\nYour task is to extract structured information that will help define the product’s positioning and unique sales proposition.\n\nExtract the following details from the provided text, using only information that is explicitly stated or clearly implied:\n\n# **Product name:** {{$(\"Information Extractor\").item.json.product_name}}\n# **Product category:** {{$(\"Information Extractor\").item.json.product_category}}\n# **Problem statement:** {{$(\"Information Extractor\").item.json.problem_statement}}\n# **Product function:** {{$(\"Information Extractor\").item.json.product_function}}\n# **Product features:** {{$(\"Information Extractor\").item.json.product_features}}\n# **Anticipated results:** {{$(\"Information Extractor\").item.json.anticipated_results}}\n# **Ideal Customer Profile (ICP): {{$(\"Information Extractor\").item.json.icp}}\n# **Persona:** {{$(\"Information Extractor\").item.json.persona}}\n# **Competitors:** {{$(\"Information Extractor\").item.json.competitors}}\n# **Differentiators:** {{$(\"Information Extractor\").item.json.differentiators}}\n\nIf any attribute is not mentioned or cannot be confidently inferred, omit it from your response. Focus on accuracy and relevance; do not include any speculative information. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        3472,
+        1168
+      ],
+      "id": "00000000-0000-0000-0000-000000000015",
+      "name": "Information Extractor"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3712,
+        1376
+      ],
+      "id": "00000000-0000-0000-0000-000000000001",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# ROLE\nYou are an experienced product marketing manager who excels at translating the features and benefits of enterprise software products into customer value.\n\n# OBJECTIVE\nUse the following instructions and product details to craft marketing copy that engages audiences, generates leads, and converts customers.\n\n# FORMATTING GUIDELINES\n- **Product Tagline**: Generate a unique and memorable phrase that captures the essence of the product and its primary benefit. \n- **Positioning Statement**: Draft 2-3 sentences that clearly define what the product is, what it does, who it's for, the impact it delivers, and its competitive advantages. \n- **Unique Value Proposition**: List 4-6 substantiating claims as bullet points. Explain how the product delivers value for its users and how it's superior to its alternatives. Highlight any specific differentiators and benefits for the ideal customer profile or persona.\n\n# REFERENCE THE INPUTS FROM THESE DATA FIELDS\n- **Product name:** {{ $json.output.product_name }} OR {{ !!$('Product Launch Details').item.json['What is the name of the product?'] }}\n- **Product category:** {{ $json.output.product_category }} OR {{ !!$('Product Launch Details').item.json['What is the product category?'] }}\n- **Problem statement:** {{ $json.output.problem_statement }} OR {{ !!$('Product Launch Details').item.json['What problem does the product solve?'] }}\n- **Product function:** {{ $json.output.product_function }} OR {{ !!$('Product Launch Details').item.json['How does the product work?'] }}\n- **Product features:** {{ $json.output.product_features }} OR {{ !!$('Product Launch Details').item.json['What are the primary features?'] }}\n- **Anticipated results:** {{ $json.output.anticipated_results }} OR {{ !!$('Product Launch Details').item.json['What results does the product deliver?'] }}\n- **Ideal Customer Profile (ICP):** {{ $json.output.icp }} OR {{ !!$('Product Launch Details').item.json['What is the ideal customer profile?'] }}\n- **Target Persona:** {{ $json.output.persona }} OR {{ !!$('Product Launch Details').item.json['What is the target persona?'] }}\n- **Competitors:** {{ $json.output.competitors }} OR {{ !!$('Product Launch Details').item.json['What products and vendors compete?'] }}\n- **Differentiators:** {{ $json.output.differentiators }} OR {{ !!$('Product Launch Details').item.json['What are its differentiators?'] }}\n\n# FOLLOW THESE CONTENT REQUIREMENTS STRICTLY\n- When extracting information, prioritize values from the “Information Extractor” node.\n  - If this data is missing, use the “Product Launch Details” node.\n  - Retain supplemental details from either node, but omit any redundant information.\n- Emphasize anticipated results and competitive differentiators.\n- Be clear, accurate, and relatable. Use direct and authoritative language with technical precision that isn't too simple or complex.\n- The messaging must be original, tailored to its audience, and suitable for use in marketing material.\n- Never begin any statements with a prepositional phrase or a sentence fragment.\n- Never refer to the product as \"it\". Use the product name, or a description of it, like a label for the category.\n- Never refer to the users as \"users\", but instead, as ['persona'].\n\n# AVOID USING THE FOLLOWING WORDS\n“AI-powered”, “AI-enabled”, “End-to-end”, “All-in-one”, “Customer-centric”, “Purpose-built”, “Seamless”, “Best-in-class”, \"Groundbreaking\", “Game-changing”, “Cutting-edge”, “Future-proof”, “Unlock”, “Unlocking”, “Unleash”, “Unleashing”, “Reveal”, “Revealing”, “Empower”, “Empowering”, “Disrupt”, “Disruptive”, “Revolutionize”, “Revolutionary”, “Innovative”, “Innovation”, “Synergy”, “Synergize”, “Holistic”, “Purpose-built”, “Purpose-driven”, “Supercharge”, “White-glove”, “Transformational”, “Transformative”, “Robust”, “Turnkey”, \"Offer\", \"Offers\", \"Offering\", \"Provide\", \"Provides\", \"Providing\", \"Provider\"",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3872,
+        1376
+      ],
+      "id": "00000000-0000-0000-0000-000000000014",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"tagline\": {\n      \"type\": \"string\",\n      \"description\": \"Generate a unique and memorable phrase that captures the essence of the product and its primary benefit. \"\n    },\n    \"positioning_statement\": {\n      \"type\": \"string\",\n      \"description\": \"A 2-3 sentence statement that clearly defines what the product is, what it does, who it's for, the impact it delivers, and its competitive advantages.\"\n    },\n    \"unique_value_proposition\": {\n      \"type\": \"string\",\n      \"description\": \"List 4-6 substantiating claims as bullet points explaining the function of key features, how the product delivers value, and how it's superior to alternatives.\"\n    }\n  },\n  \"required\": [\"tagline\", \"positioning_statement\", \"unique_value_proposition\"]\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        4016,
+        1536
+      ],
+      "id": "00000000-0000-0000-0000-000000000010",
+      "name": "Structured Output"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3872,
+        1520
+      ],
+      "id": "00000000-0000-0000-0000-000000000028",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3472,
+        1296
+      ],
+      "id": "00000000-0000-0000-0000-000000000008",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        1504
+      ],
+      "id": "00000000-0000-0000-0000-000000000002",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "=formatted_text",
+        "binaryPropertyName": "product_positioning_statements",
+        "options": {
+          "fileName": "product_positioning_statements.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        4272,
+        1376
+      ],
+      "id": "00000000-0000-0000-0000-000000000023",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "sendTo": "your-email@example.com",
+        "subject": "Product positioning statements",
+        "message": "=Please review the attachment with positioning and messaging for your enterprise software product.",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "product_positioning_statements"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4416,
+        1376
+      ],
+      "id": "00000000-0000-0000-0000-000000000009",
+      "name": "Review copy",
+      "webhookId": "YOUR_WEBHOOK_ID_3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_OAUTH2_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the structured output from the Basic LLM Chain node\nconst output = $input.first().json.output;\n\n// Extract the three fields\nconst tagline = output.tagline || '';\nconst positioningStatement = output.positioning_statement || '';\nconst uniqueValueProposition = output.unique_value_proposition || '';\n\n// Combine into formatted markdown text\nlet formattedText = '';\n\nif (tagline) {\n  formattedText += '# Product Tagline\\n\\n' + tagline + '\\n\\n';\n}\n\nif (positioningStatement) {\n  formattedText += '# Positioning Statement\\n\\n' + positioningStatement + '\\n\\n';\n}\n\nif (uniqueValueProposition) {\n  formattedText += '# Unique Value Proposition\\n\\n' + uniqueValueProposition + '\\n\\n';\n}\n\n// Return formatted text\nreturn { formatted_text: formattedText };"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4128,
+        1376
+      ],
+      "id": "00000000-0000-0000-0000-000000000011",
+      "name": "Format text"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00000000-0000-0000-condition-000010",
+              "leftValue": "={{ [$json['Upload supporting documents about the product (PRD, RFC, etc.)']] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3152,
+        1840
+      ],
+      "id": "00000000-0000-0000-0000-000000000018",
+      "name": "Uploaded PRD/RFC1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "00000000-0000-0000-condition-000008",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['What is the feature called?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000012",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['What product is it for?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000002",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['What problem does the feature solve?']}}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000011",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['How does the feature work?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000009",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['What are the benefits of the feature?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000013",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['Is this an expected feature or differentiating feature?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000005",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['What products and vendors offer a comparable feature?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "00000000-0000-0000-condition-000003",
+              "leftValue": "={{ !!$('Feature Release Details').item.json['How is this feature differentiated from its alternatives?'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3328,
+        1920
+      ],
+      "id": "00000000-0000-0000-0000-000000000003",
+      "name": "Only Form Field1"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "={{ $('Feature Release Details').item.binary['Upload_supporting_documents_about_the_feature__PRD__RFC__etc__'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        3328,
+        1744
+      ],
+      "id": "00000000-0000-0000-0000-000000000025",
+      "name": "Extract from File1"
+    },
+    {
+      "parameters": {
+        "text": "={{ $('Extract from File1').item.json.text }}",
+        "attributes": {
+          "attributes": [
+            {
+              "name": "product_name",
+              "description": "The name of the product"
+            },
+            {
+              "name": "feature_name",
+              "description": "The name of the feature"
+            },
+            {
+              "name": "feature_functionality",
+              "description": "How the feature functions"
+            },
+            {
+              "name": "benefits",
+              "description": "The benefits delivered by the feature"
+            },
+            {
+              "name": "comparable_features",
+              "description": "Comparable features offered by competing products"
+            },
+            {
+              "name": "differentiators",
+              "description": "How the feature differentiates the product from competitors"
+            },
+            {
+              "name": "problem_statement",
+              "description": "State the problem that the product solves"
+            }
+          ]
+        },
+        "options": {
+          "systemPromptTemplate": "You are an expert in analyzing technical and business documents, such as Requests for Comments (RFCs) and Product Requirements Documents (PRDs), for new products or features.\n\nYour task is to extract the following details from the provided text to define the product's features, using only information that is explicitly stated or clearly implied:\n\n# **Feature name:** {{ $json.output.feature_name }} \n# **Product name:** {{ $json.output.product_name }} \n# **Problem statement:** {{ $json.output.problem_statement }} \n# **Feature functionality:** {{ $json.output.feature_functionality }} \n# **Feature benefits:** {{ $json.output.benefits}}\n# **Competition:** {{ $json.output.comparable_features }} \n# **Differentiation:** {{ $json.output.differentiators }} \n\nIf any attribute is not mentioned or cannot be confidently inferred, omit it from your response. Focus on accuracy and relevance; do not include any speculative information."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.informationExtractor",
+      "typeVersion": 1.2,
+      "position": [
+        3488,
+        1680
+      ],
+      "id": "00000000-0000-0000-0000-000000000013",
+      "name": "Information Extractor1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        3728,
+        1888
+      ],
+      "id": "00000000-0000-0000-0000-000000000026",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# ROLE\nYou are a product management expert who specializes in drafting feature release notes for enterprise software products.\n\n# OBJECTIVE\nUse the given product information to draft a 2-3 sentence feature release note, helping users understand the benefits of new product enhancements and how it can be utilized. Encourage recurring customers and engaged prospects to adopt new product features and continue to utilize them successfully.\n\n# INCORPORATE THE FOLLOWING INPUTS FROM THESE DATA FIELDS\n- **Feature name:** {{ $json.output.feature_name }} OR {{ !!$('Feature Release Details').item.json['What is the feature called?'] }}\n- **Product name:** {{ $json.output.product_name }} OR {{ !!$('Feature Release Details').item.json['What product is it for?'] }}\n- **Problem statement:** {{ $json.output.problem_statement }} OR {{ !!$('Feature Release Details').item.json['What problem does the feature solve?'] }}\n- **Feature functionality:** {{ $json.output.feature_functionality }} OR {{ !!$('Feature Release Details').item.json['How does the feature work?'] }}\n- **Feature benefits:** {{ $json.output.benefits}} OR {{ !!$('Feature Release Details').item.json['What are the benefits of the feature?'] }}\n- **Competition:** {{ $json.output.comparable_features }} OR {{ !!$('Feature Release Details').item.json['What products and vendors offer a comparable feature?'] }}\n- **Differentiation:** {{ $json.output.differentiators }} OR {{ !!$('Feature Release Details').item.json['How is this feature differentiated from its alternatives?'] }}\n\n# FOLLOW THESE CONTENT REQUIREMENTS STRICTLY\n- When extracting information, prioritize values from the “Information Extractor” node.\n  - If this data is missing, use the “Product Launch Details” node.\n  - Retain supplemental details from either node, but omit any redundant information.\n- Emphasize anticipated results and competitive differentiators.\n- Be clear, accurate, and relatable. Use direct and authoritative language with technical precision that isn't too simple or complex.\n- The messaging must be original, tailored to its audience, and suitable for use in marketing material.\n- Never begin any statements with a prepositional phrase or a sentence fragment.\n- Never refer to the product as \"it\". Use the product name, or a description of it, like a label for the category.\n- Never refer to the users as \"users\", but instead, as ['persona'].\n\n# AVOID USING THE FOLLOWING WORDS\n“AI-powered”, “AI-enabled”, “End-to-end”, “All-in-one”, “Customer-centric”, “Purpose-built”, “Seamless”, “Best-in-class”, \"Groundbreaking\", “Game-changing”, “Cutting-edge”, “Future-proof”, “Unlock”, “Unlocking”, “Unleash”, “Unleashing”, “Reveal”, “Revealing”, “Empower”, “Empowering”, “Disrupt”, “Disruptive”, “Revolutionize”, “Revolutionary”, “Innovative”, “Innovation”, “Synergy”, “Synergize”, “Holistic”, “Purpose-built”, “Purpose-driven”, “Supercharge”, “White-glove”, “Transformational”, “Transformative”, “Robust”, “Turnkey”, \"Offer\", \"Offers\", \"Offering\", \"Provide\", \"Provides\", \"Providing\", \"Provider\"",
+        "hasOutputParser": true,
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        3888,
+        1888
+      ],
+      "id": "00000000-0000-0000-0000-000000000007",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3888,
+        2032
+      ],
+      "id": "00000000-0000-0000-0000-000000000016",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.1-pro-preview",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3488,
+        1808
+      ],
+      "id": "00000000-0000-0000-0000-000000000006",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "YOUR_GOOGLE_GEMINI_CREDENTIAL_ID",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3536,
+        2016
+      ],
+      "id": "00000000-0000-0000-0000-000000000022",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "text",
+        "binaryPropertyName": "feature_release_note",
+        "options": {
+          "fileName": "feature_release_note.md"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        4176,
+        1888
+      ],
+      "id": "00000000-0000-0000-0000-000000000020",
+      "name": "Convert to File1"
+    },
+    {
+      "parameters": {
+        "sendTo": "your-email@example.com",
+        "subject": "Feature release note",
+        "message": "=Please review the attachment with positioning and messaging for your enterprise software product.",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "feature_release_note"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        4320,
+        1888
+      ],
+      "id": "00000000-0000-0000-0000-000000000005",
+      "name": "Review copy1",
+      "webhookId": "YOUR_WEBHOOK_ID_3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "YOUR_GMAIL_OAUTH2_CREDENTIAL_ID",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Product Enhancement Evaluation": {
+      "main": [
+        [
+          {
+            "node": "Product or Feature Release?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Product or Feature Release?": {
+      "main": [
+        [
+          {
+            "node": "Product Launch Details",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Feature Release Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Product Launch Details": {
+      "main": [
+        [
+          {
+            "node": "Uploaded PRD/RFC",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uploaded PRD/RFC": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Only Form Field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Only Form Field": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Format text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Review copy",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format text": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Uploaded PRD/RFC1": {
+      "main": [
+        [
+          {
+            "node": "Extract from File1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Only Form Field1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Only Form Field1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File1": {
+      "main": [
+        [
+          {
+            "node": "Information Extractor1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Information Extractor1": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Information Extractor1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "Review copy1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feature Release Details": {
+      "main": [
+        [
+          {
+            "node": "Uploaded PRD/RFC1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "YOUR_VERSION_ID_1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "YOUR_N8N_INSTANCE_ID"
+  },
+  "id": "YOUR_WORKFLOW_ID",
+  "tags": []
+}
